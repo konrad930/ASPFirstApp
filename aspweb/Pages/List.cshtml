@@ -1,0 +1,39 @@
+@page
+@model aspweb.Pages.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>Restaurants</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" asp-for="SearchTerm"/>
+            <span class="input-group-text">
+                <button class="btn btn-primary">
+                    <i class=""></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        <tr >
+            <td>@restaurant.Name</td>
+            <td>@restaurant.Location</td>
+            <td>@restaurant.Type</td>
+            <td>
+                <a asp-page="./Details" asp-route-restaurantId="@restaurant.Id">Detail</a> 
+           </td>
+            <td>
+                <a asp-page="./Edit" asp-route-restaurantId="@restaurant.Id">Edit</a> 
+           </td>
+        </tr>
+    }
+</table>
+
+<a asp-page="./Edit" class="btn btn-primary">Add New</a>
